@@ -1,0 +1,185 @@
+<script>
+    function myFunction() {
+      var val1 = document.getElementById("value1").value;
+      if(val1===""){
+        document.getElementById("value1").value = 0;
+        val1 = 0;
+      }
+      var val2 = document.getElementById("value2").value;
+      if(val2===""){
+        document.getElementById("value2").value = 1;
+        val2 = 1;
+      }
+      
+  
+  
+      var x = null;
+      x = document.getElementById("mySelect").value;
+      var bill = 0;
+      var bill1 = 0;
+      var bill2 = 0;
+      var bill3 = 0;
+      var bill4 = 0;
+      var bill5 = 0;
+      var bill6 = 0;
+  
+      var t1 = 0;
+      var t2 = 0;
+      var t3 = 0;
+      var t4 = 0;
+      var t5 = 0;
+      var t6 = 0;
+  
+      if(x === "DPDC"){
+        t1 = 4.85;
+        t2 = 6.63;
+        t3 = 6.95;
+        t4 = 7.34;
+        t5 = 11.51;
+        t6 = 13.26;
+      }
+      else if( x === "DESCO"){
+        t1 = 4.85;
+        t2 = 6.63;
+        t3 = 6.95;
+        t4 = 7.34;
+        t5 = 11.51;
+        t6 = 13.26;
+      }
+      else if(x === "BPDB"){
+        t1 = 4.85;
+        t2 = 6.63;
+        t3 = 6.95;
+        t4 = 7.34;
+        t5 = 11.51;
+        t6 = 13.26;
+      }
+  
+      else if(x === "BREB"){
+        t1 = 4.85;
+        t2 = 6.63;
+        t3 = 6.95;
+        t4 = 7.34;
+        t5 = 11.51;
+        t6 = 13.26;
+      }
+      else if(x === "Select"){
+  
+        document.getElementById("demo").innerHTML = "Error in Bill Calculation";
+        document.getElementById("demo").style.color = "tomato";
+        document.getElementById("demo1").innerHTML = ("");
+        document.getElementById("demo2").innerHTML = ("");
+        document.getElementById("demo3").innerHTML = ("");
+        document.getElementById("demo4").innerHTML = ("");
+        document.getElementById("demo5").innerHTML = ("");
+        document.getElementById("demo6").innerHTML = ("");
+        alert("Please Select A Distributor");
+      }
+      if( x != "Select"){
+        document.getElementById("demo").innerHTML = (x + " Electricity Bill <br />");
+        document.getElementById("demo").style.color = "green";
+  
+        if(val1>600){
+          bill6 = t6*(val1-600);
+          document.getElementById("demo1").innerHTML = ("Tariff( >600): " + (val1-600) + " x " + t6 + " = " + bill6.toFixed(2) + " taka"); 
+          val1= 600;
+        }
+        else
+          document.getElementById("demo1").innerHTML="";
+        if(val1>400){
+          bill5 = t5*(val1-400);
+          document.getElementById("demo2").innerHTML = ("Tariff(401-600): " + (val1-400) + " x " + t5 + " = " + bill5.toFixed(2) + " taka");
+  
+          val1= 400;
+        }
+        else
+          document.getElementById("demo2").innerHTML="";
+        if(val1>300){
+          bill4 = t4*(val1-300);
+          document.getElementById("demo3").innerHTML = ("Tariff(301-400): " + (val1-300) + " x " + t4 + " = " + bill4.toFixed(2) + " taka");
+  
+          val1= 300;
+        }
+        else
+          document.getElementById("demo3").innerHTML="";
+        if(val1>200){
+          bill3 = t3*(val1-200);
+          document.getElementById("demo4").innerHTML = ("Tariff(201-300): " + (val1-200) + " x " + t3 + " = " + bill3.toFixed(2) + " taka");
+  
+          val1= 200;
+        }
+        else
+          document.getElementById("demo4").innerHTML="";
+        if(val1>75){
+          bill2 = t2*(val1-75);
+          document.getElementById("demo5").innerHTML = ("Tariff(76-200): " + (val1-75) + " x " + t2 + " = " + bill2.toFixed(2) + " taka");
+  
+          val1= 75;
+        }
+        else
+          document.getElementById("demo5").innerHTML="";
+        if(val1<76){
+  
+          bill1 = t1*val1;
+          document.getElementById("demo6").innerHTML = ("Tariff(0-75): " + val1 + " x " + t1 + " = " + bill1.toFixed(2) + " taka");
+          document.getElementById("demo6").style="";
+        }
+        else
+        {
+          //document.getElementById("demo6").innerHTML = "";
+          document.getElementById("demo").innerHTML = "Wrong key pressed. Please enter numbers only.";
+          document.getElementById("demo").style.color = "tomato";
+        }
+      }
+  
+  
+      bill = bill1 + bill2 + bill3 + bill4 + bill5 + bill6;
+      var ansD1 = document.getElementById("answer1");
+      var ansD2 = document.getElementById("answer2");
+      var ansD3 = document.getElementById("answer3");
+      var ansD4 = document.getElementById("answer4");
+      ansD1.value = bill.toFixed(2);
+      ansD2.value = ((bill+(val2*35))*5/100).toFixed(2);
+      ansD3.value = (val2*35).toFixed(2);
+      ansD4.value = (bill + (bill+(val2*35))*5/100 + val2*35).toFixed(2);
+      //document.getElementById("demo2").innerHTML = ("Exiting switch block");
+    } 
+  </script> 
+  <center>
+  <table align="center">
+    <tbody>
+      <tr><td><b>ড&#2495;স&#2509;ট&#2509;র&#2495;ব&#2495;উটর : </b></td><td>
+        <select id="mySelect" style="width: 100px;">
+          <option value="Select">-- Select --</option>
+          <option value="DPDC">DPDC</option>
+          <option value="DESCO">DESCO</option>
+          <option value="BPDB">BPDB</option>
+          <option value="BREB">BREB</option>
+          <option value="">Other</option>
+        </select></td></tr>
+  
+      <tr><td title="Total Unit or kWH"><b>ম&#2507;ট ইউন&#2495;ট&nbsp; =</b></td>
+        <td><input id="value1" name="value1" style="width: 100px;" type="number" value="" /> <b>kWH/Unit</b></td></tr>
+      <tr><td title="Demand Load"><b>ড&#2495;ম&#2494;ন&#2509;ড ল&#2507;ড&nbsp; =</b></td>
+        <td><input id="value2" name="value2" style="width: 100px;" type="number" value="" /><b> kW</b></td></tr>
+      <tr><td align="center" colspan="3"><center><input class="btn btn-info text-white btn-outline-success" id="mn" name="Sumbit" onclick="javascript:myFunction()" title="Calculate Bill" type="button" value="Click To Calculate Bill" /></center></td></tr>
+      <tr><td><b>ইল&#2503;কট&#2509;র&#2495;ক ব&#2495;ল&nbsp; = </b></td>
+        <td><input disabled="" id="answer1" maxlength="6" name="answer1" size="10" type="text" value="" /><b> TK </b></td></tr>
+      <tr><td><b>ড&#2495;ম&#2494;ন&#2509;ড চ&#2494;র&#2509;জ&nbsp; = </b></td>
+        <td><input disabled="" id="answer3" maxlength="6" name="answer2" size="10" type="text" value="" /><b> TK </b></td></tr>
+      <tr><td><b>ভ&#2509;য&#2494;ট = </b></td>
+        <td><input disabled="" id="answer2" maxlength="6" name="answer2" size="10" type="text" value="" /><b> TK </b></td></tr>
+      <tr><td><b>ম&#2507;ট ব&#2495;ল&nbsp; = </b></td>
+        <td><input disabled="" id="answer4" maxlength="6" name="answer2" size="10" type="text" value="" /><b> TK </b></td></tr>
+    </tbody></table>
+  
+  
+    <h1 class="mt-2" id="demo"></h1>
+    <p id="demo7"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <p id="demo6"></p>
+  </center>
